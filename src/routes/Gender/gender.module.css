@@ -1,0 +1,47 @@
+
+.container-gender {
+display: flex;
+width: auto;
+flex-direction: column;
+position: absolute;
+background-color: rgba(0, 0, 0, 0.62);
+color: #ffffff;
+z-index: 10;
+border-radius: 10px;
+}
+.container-gender a {
+  font-size: 14px;
+  text-transform: uppercase;
+  margin: 5px 0;
+  color: #ffffff;
+  text-decoration: none;
+  transform: scale(0.9);
+  text-transform: uppercase;
+  transition: all ease 0.2s;
+}
+
+.container-gender a:hover {
+  transform: scale(1);
+}
+
+.container-gender ul {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  justify-content: center;
+  padding: 1em 0;
+  box-sizing: border-box;
+  align-items: flex-start;
+}
+
+.container-gender ul li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  text-transform: uppercase;
+  margin-right: 30px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+

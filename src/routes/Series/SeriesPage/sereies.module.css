@@ -1,0 +1,70 @@
+.container-series {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+}
+.section-cards {
+  display: flex;
+  width: 80%;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.container-card {
+  display: flex;
+  flex-direction: column;
+  margin: 28px;
+}
+
+.cards {
+  width: 250px;
+  height: 300px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  text-align: center;
+}
+
+.cards img {
+  width: 250px;
+  height: 300px;
+  position: absolute;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.card-voted {
+  display: flex;
+  position: relative;
+  z-index: 1;
+  background-color: rgba(14, 14, 14, 0);
+  align-items: center;
+  padding: 0.5em;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+.container-voted {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.card-voted span {
+  color: #fff;
+  margin: 0 10px ;
+  font-weight: bold;
+}
+
+.serie-title {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.pagination {
+  margin: 0 auto;
+}

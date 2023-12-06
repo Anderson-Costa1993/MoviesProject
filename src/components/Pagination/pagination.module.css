@@ -1,0 +1,20 @@
+.container-buttom {
+  display: flex;
+  width: 200px;
+  margin: 0 auto;
+  justify-content: space-around;
+  margin-bottom: 15px;
+}
+
+.container-buttom i {
+  color: #fff;
+  font-size: 2em;
+  cursor: pointer;
+  font-weight: bold;
+  transform: scale(0.8);
+  transition: all ease 0.3s;
+}
+
+.container-buttom i:hover {
+  transform: scale(1);
+}

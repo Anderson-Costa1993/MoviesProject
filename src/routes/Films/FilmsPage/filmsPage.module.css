@@ -1,0 +1,143 @@
+.container-filmes {
+  display: flex;
+  margin: 0 auto;
+  width: 99%;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+.container-filters {
+  width: 40%;
+  min-height: 700px;
+  margin-top: 50px;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+}
+
+.container-filters h1 {
+  font-size: 16px;
+  color: #fff;
+  margin: 0;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.list-cards {
+  height: 400px;
+}
+
+.section-cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.container-card {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0 auto;
+  justify-content: center;
+}
+.card-itens {
+  margin: 28px;
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.9);
+  width: 260px;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all ease 0.2s;
+}
+
+.card-itens:hover {
+  transform: scale(1);
+  border: solid 2px #fff;
+}
+
+.card {
+  width: 250px;
+  height: 300px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  box-sizing: border-box;
+}
+
+.card img {
+  width: 100%;
+  height: 300px;
+  position: absolute;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.card-voted {
+  display: flex;
+  position: relative;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.148);
+  align-items: center;
+  padding: 0.5em;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+.voted-icons {
+  display: flex;
+}
+
+.voted-itens {
+  display: flex;
+  font-size: 12px;
+  box-sizing: border-box;
+  width: 200px;
+  justify-content: center;
+  text-align: center;
+}
+
+.card-voted span {
+  color: #fff;
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+.pagination {
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .container-filmes {
+    flex-direction: column;
+  }
+
+  .container-card {
+    margin-top: 100px;
+  }
+
+  .card {
+    width: 180px;
+    height: 200px;
+  }
+
+  .card-itens {
+    width: 180px;
+    margin: 10px;
+  }
+
+  .list-cards {
+    height: 250px;
+  }
+  .card img {
+    height: 200px;
+  }
+}
