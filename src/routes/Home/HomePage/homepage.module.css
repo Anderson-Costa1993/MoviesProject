@@ -177,4 +177,9 @@
     margin: 0.5em 0;
   }
 
+  .movieRow-left, .movieRow-right {
+    opacity: 10;
+    width: 30px;
+  }
+
 }

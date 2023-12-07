@@ -120,10 +120,6 @@ export function DetailFilmsPage({ filmDetails, filmDetailVideos }: Props) {
                 </i>
                 <span>{filmDetails.genres[0].name} </span>
               </div>
-              <div className={style.sinopse}>
-                <h1>Sinopse</h1>
-                <p>{filmDetails.overview}</p>
-              </div>
             </div>
           </div>
         </section>
@@ -135,18 +131,23 @@ export function DetailFilmsPage({ filmDetails, filmDetailVideos }: Props) {
             <span>{`Orçamento:  $${filmDetails.budget.toLocaleString()}`}</span>
             <span>{`Receita: $${filmDetails.revenue.toLocaleString()}`}</span>
           </div>
-          <div>
+        </div>
+        <div className={style.sinopse}>
+                <h1>Sinopse</h1>
+                <p>{filmDetails.overview}</p>
+              </div>
+      </div>
+      <div>
+        <MidiaMovies videos={filmDetailVideos} />
+      </div>
+      <div>
             {filmDetails.belongs_to_collection?.id ? (
               <Collection
                 CollectionId={{ id: filmDetails.belongs_to_collection.id }}
               />
             ) : null}
           </div>
-        </div>
-      </div>
-      <div>
-        <MidiaMovies videos={filmDetailVideos} />
-      </div>
     </div>
+
   );
 }

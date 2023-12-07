@@ -85,5 +85,7 @@
   .movieRow-left,
   .movieRow-right {
     height: 225px;
+    opacity: 10;
+    width: 30px;
   }
 }
