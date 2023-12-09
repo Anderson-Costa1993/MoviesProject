@@ -1,10 +1,9 @@
 
 .container-gender {
 display: flex;
-width: auto;
-flex-direction: column;
+width: 100%;
 position: absolute;
-background-color: rgba(0, 0, 0, 0.62);
+background-color: rgba(0, 0, 0, 0.941);
 color: #ffffff;
 z-index: 10;
 border-radius: 10px;
@@ -27,8 +26,8 @@ border-radius: 10px;
 .container-gender ul {
   display: flex;
   flex-direction: column;
-  width: 95%;
-  justify-content: center;
+  width: 100%;
+  justify-content: space-around;
   padding: 1em 0;
   box-sizing: border-box;
   align-items: flex-start;
@@ -36,12 +35,19 @@ border-radius: 10px;
 
 .container-gender ul li {
   display: flex;
+  min-width: 150px;
   align-items: center;
   justify-content: center;
   list-style: none;
   text-transform: uppercase;
-  margin-right: 30px;
   box-sizing: border-box;
   cursor: pointer;
 }
 
+
+@media (max-width: 600px) {
+  .container-gender ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

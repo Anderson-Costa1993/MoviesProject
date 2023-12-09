@@ -35,7 +35,7 @@ export function HomePage({ movies, topMovies, soonRelease }: Props) {
 
       let listW = movies.length * 150;
       if (window.innerWidth - listW > x) {
-        x = window.innerWidth - listW - 120;
+        x = window.innerWidth - listW - 60;
       }
       setScrollx(x);
     } else {
@@ -43,7 +43,7 @@ export function HomePage({ movies, topMovies, soonRelease }: Props) {
 
       let listW = movies.length * 300;
       if (window.innerWidth - listW > x) {
-        x = window.innerWidth - listW - 60;
+        x = window.innerWidth - listW - 120;
       }
       setScrollx(x);
     }

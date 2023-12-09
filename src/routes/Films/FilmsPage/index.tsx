@@ -51,7 +51,7 @@ export function FilmPage({ movies }: Props) {
         <div onClick={toggleMenu} style={{ width: "24px", color: "#fff" }}>
           <i
             className="bi bi-list"
-            style={{ fontSize: "24px", color: "#fff" }}
+            style={{ fontSize: "24px", color: "#fff",marginLeft:"10px" }}
           ></i>
         </div>
         <div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { apiMovieService } from "../../services/ServiceApiMovie";
 import { ColletionType } from "../../types";
-import stytle from "./collection.module.css"
+import stytle from "./collection.module.css";
 import { useNavigate } from "react-router-dom";
 
 type Props = {
@@ -23,14 +23,28 @@ export function Collection({ CollectionId }: Props) {
 
   const IMG = `https://image.tmdb.org/t/p/w500/`;
 
+  const handleCardClick = (id: number) => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    navigate(`/detailFilms/${id}`);
+  };
+
   return (
-    <div className={stytle['container-collection']}>
+    <div className={stytle["container-collection"]}>
       <h1>Collection</h1>
       {colletion ? (
-        <section className={stytle['section-collection']}>
+        <section className={stytle["section-collection"]}>
           {colletion.parts.map((item) => (
-            <div className={stytle.card} onClick={()=> navigate(`/detailFilms/${item.id}`)} key={item.id}>
-              <img src={IMG + `${item.poster_path}`} alt="" />
+            <div
+              className={stytle.card}
+              onClick={() => handleCardClick(item.id)}
+              key={item.id}
+            >
+              {item.poster_path ? (
+                <img src={IMG + `${item.poster_path}`} alt="" />
+              ) : null}
             </div>
           ))}
         </section>

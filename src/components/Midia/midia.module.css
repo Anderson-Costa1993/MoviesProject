@@ -83,7 +83,6 @@
 }
 
 
-
 @media (max-width: 600px) {
   .container-Principal {
     width: 90%;
@@ -97,4 +96,9 @@
   .container-Principal ul {
     width: 100%;
   }
+  .modal {
+    height: 500px;
+    width: 100%;
+  }
+
 }

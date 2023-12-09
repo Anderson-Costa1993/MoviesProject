@@ -59,10 +59,18 @@ export function DetailFilmsPage({ filmDetails, filmDetailVideos }: Props) {
     };
   }, [modalIndex]);
 
+  const handleCardClick = () => {
+    navigate(-1);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div className={style["container-DetailFilms"]}>
       <div className={style.return}>
-        <i className="bi bi-arrow-left" onClick={() => navigate(-1)}></i>
+        <i className="bi bi-arrow-left" onClick={() => handleCardClick()}></i>
       </div>
       <div>
         <BannerHome banner={{ Banner: IMG + `${filmDetails.backdrop_path}` }} />
@@ -75,42 +83,6 @@ export function DetailFilmsPage({ filmDetails, filmDetailVideos }: Props) {
               <h1>
                 {filmDetails.title} ({filmDetails.release_date})
               </h1>
-
-              {filmDetailVideos.map((item, index) =>
-                item.key && filmDetailVideos[0].key
-                  ? index === 1 && (
-                      <div key={item.id}>
-                        <button
-                          type="button"
-                          className="btn btn-primary p-1"
-                          onClick={() => {
-                            openModal();
-                          }}
-                          data-bs-toggle="modal"
-                          data-bs-target={`#staticBackdrop`}
-                          style={{
-                            background: "rgba(0, 99, 185, 0)",
-                            border: "none",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          <i
-                            className="bi bi-play"
-                            style={{ fontSize: "22px" }}
-                          ></i>
-                          Reproduzir trailer
-                        </button>
-
-                        {modalIndex &&
-                          createPortal(
-                            <ModalMovie  video={filmDetailVideos} modalIndex={modalIndex} closeModal={closeModal}/>,
-                            document.body
-                          )}
-                      </div>
-                    )
-                  : null
-              )}
-
               <p>{filmDetails.tagline}</p>
               <div>
                 <span className={style.timer}> {duracaoFormatada}</span>
@@ -120,6 +92,50 @@ export function DetailFilmsPage({ filmDetails, filmDetailVideos }: Props) {
                 </i>
                 <span>{filmDetails.genres[0].name} </span>
               </div>
+              {filmDetailVideos.map((item, index) =>
+                item.key && filmDetailVideos[0].key
+                  ? index === 1 && (
+                      <div key={item.id}>
+                        <button
+                          type="button"
+                          className="btn btn-primary p-1 btn-play d-flex justify-content-center align-items-center p-0"
+                          onClick={() => {
+                            openModal();
+                          }}
+                          data-bs-toggle="modal"
+                          data-bs-target={`#staticBackdrop`}
+                          style={{
+                            background: "rgba(0, 99, 185, 0)",
+                            border: "none",
+                            fontWeight: "bold",
+                            margin: "0 auto",
+                          }}
+                        >
+                          <i
+                            className="bi bi-play"
+                            style={{
+                              fontSize: "30px",
+                              margin: "0",
+                              padding: "0",
+                              color: "rgb(0, 99, 185)",
+                            }}
+                          ></i>
+                          Reproduzir trailer
+                        </button>
+
+                        {modalIndex &&
+                          createPortal(
+                            <ModalMovie
+                              video={filmDetailVideos}
+                              modalIndex={modalIndex}
+                              closeModal={closeModal}
+                            />,
+                            document.body
+                          )}
+                      </div>
+                    )
+                  : null
+              )}
             </div>
           </div>
         </section>
@@ -132,22 +148,23 @@ export function DetailFilmsPage({ filmDetails, filmDetailVideos }: Props) {
             <span>{`Receita: $${filmDetails.revenue.toLocaleString()}`}</span>
           </div>
         </div>
-        <div className={style.sinopse}>
-                <h1>Sinopse</h1>
-                <p>{filmDetails.overview}</p>
-              </div>
+        {filmDetails.overview ? (
+          <div className={style.sinopse}>
+            <h1>Sinopse</h1>
+            <p>{filmDetails.overview}</p>
+          </div>
+        ) : null}
       </div>
       <div>
         <MidiaMovies videos={filmDetailVideos} />
       </div>
       <div>
-            {filmDetails.belongs_to_collection?.id ? (
-              <Collection
-                CollectionId={{ id: filmDetails.belongs_to_collection.id }}
-              />
-            ) : null}
-          </div>
+        {filmDetails.belongs_to_collection?.id ? (
+          <Collection
+            CollectionId={{ id: filmDetails.belongs_to_collection.id }}
+          />
+        ) : null}
+      </div>
     </div>
-
   );
 }
