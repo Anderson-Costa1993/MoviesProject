@@ -1,14 +1,13 @@
 import ReactDOM from "react-dom/client";
-import { apiMovieService } from "./services/ServiceApiMovie.ts";
 import App from "./App.tsx";
 import "./index.css";
-import { Home } from "./routes/Home/index.tsx";
 import ContextProvider from "./Context/ContextPage.tsx";
-import { createBrowserRouter, RouterProvider, defer } from "react-router-dom";
-import { DetailFilms } from "./routes/DetailsFilms/index.tsx";
-import { Films } from "./routes/Films/index.tsx";
-import { SeriesRecents } from "./routes/Series/index.tsx";
-import { DetailSeries } from "./routes/DetailSeries/index.tsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { DetailFilmsPage } from "./routes/DetailsFilms/index.tsx";
+import { TestePage } from "./routes/testes/Teste.tsx";
+import { HomePage } from "./routes/Home/index.tsx";
+import { FilmPage } from "./routes/Films/index.tsx";
+import { SeriesPage } from "./routes/Series/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -17,67 +16,24 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        loader: () => {
-          const movies = apiMovieService.getMovies();
-          const topMovies = apiMovieService.getTopFilms();
-          const soonRelease = apiMovieService.getSoonRelease();
-          return defer({
-            movies,
-            topMovies,
-            soonRelease
-          });
-        },
-        element: <Home />,
+        element: <HomePage />,
       },
       {
         path: "/detailFilms/:filmId",
-        loader: (options) => {
-          const params = options.params as any;
-          const filmDetails = apiMovieService.getDetailsFilmes(params.filmId);
-          const filmDetailVideos = apiMovieService.getVideoFilms(params.filmId);
-          return defer({
-            filmDetails,
-            filmDetailVideos
-          });
-        },
-        element: <DetailFilms />,
+        element: <DetailFilmsPage />,
       },
       {
         path: "/films/:page/:genres?",
-        loader: (options) => {
-          const params = options.params as any;
-          const movies = apiMovieService.getAllFilms(
-            params.page,
-            params.genres || undefined
-          );
-          return defer({
-            movies,
-          });
-        },
-        element: <Films />,
+
+        element: <FilmPage />,
       },
       {
         path: "/series/:page/:sort_by",
-        loader: (options) => {
-          const params = options.params as any;
-          const series = apiMovieService.getSeriesRecents(params.page, params.sort_by);
-          return defer({
-            series,
-          });
-        },
-        element: <SeriesRecents />,
+        element: <SeriesPage />,
       },
       {
-        path: "/tv",
-        loader: () => {
-          const movies = apiMovieService.getOriginaisNetflix();
-          const topMovies = apiMovieService.getTopFilms();
-          return defer({
-            movies,
-            topMovies
-          });
-        },
-        element: <DetailSeries />,
+        path: "/teste/:filmId",
+        element: <TestePage />,
       },
     ],
   },

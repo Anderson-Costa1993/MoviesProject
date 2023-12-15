@@ -1,8 +1,9 @@
 .container-series {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 10px auto;
   align-items: center;
+  color: #fff;
 }
 .section-cards {
   display: flex;
@@ -13,21 +14,37 @@
   box-sizing: border-box;
 }
 
+.list-cards {
+  height: 400px;
+}
+
 .container-card {
+  margin: 28px;
   display: flex;
   flex-direction: column;
-  margin: 28px;
+  transform: scale(0.9);
+  width: 270px;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all ease 0.2s;
+}
+
+.container-card:hover {
+  transform: scale(1);
+  border: solid 2px #fff;
 }
 
 .cards {
   width: 250px;
   height: 300px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  box-sizing: border-box;
 }
 
 .cards img {
-  width: 250px;
+  width: 100%;
   height: 300px;
   position: absolute;
   display: flex;
@@ -38,7 +55,7 @@
   display: flex;
   position: relative;
   z-index: 1;
-  background-color: rgba(14, 14, 14, 0);
+  background-color: rgba(0, 0, 0, 0.148);
   align-items: center;
   padding: 0.5em;
   align-items: center;
@@ -52,11 +69,23 @@
   align-items: center;
   margin-bottom: 5px;
 }
+.voted-icons {
+  display: flex;
+}
+
 
 .card-voted span {
   color: #fff;
   margin: 0 10px ;
   font-weight: bold;
+}
+.voted-itens {
+  display: flex;
+  font-size: 12px;
+  box-sizing: border-box;
+  width: 200px;
+  justify-content: center;
+  text-align: center;
 }
 
 .serie-title {
@@ -67,4 +96,8 @@
 
 .pagination {
   margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+
 }

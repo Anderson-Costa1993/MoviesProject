@@ -8,19 +8,19 @@ type Props = {
 export function BannerHome({ banner }: Props) {
   const backgroundImageStyle: React.CSSProperties = {
     backgroundImage: `url(${banner.Banner})`,
-    backgroundSize: "cover  ",  // Adicione esta linha se quiser cobrir completamente o elemento
-    backgroundPosition: "left",  // Adicione esta linha se quiser centralizar a imagem
+    backgroundSize: "cover",
+    backgroundPosition: "top",
     backgroundRepeat: "no-repeat",
-    height: "600px",  // Adapte conforme necessário
-    opacity: "0.3"
+    height: "550px",
+    opacity: "0.5",
   };
 
   const mobileStyle: React.CSSProperties = {
     backgroundImage: `url(${banner.Banner})`,
-    backgroundSize: "100% 100%",  // Adicione esta linha se quiser cobrir completamente o elemento
-    backgroundPosition: "center",  // Adicione esta linha se quiser centralizar a imagem
+    backgroundSize: "100% 100%",
+    backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
-    height: "550px",  // Adapte conforme necessário
+    height: "550px",
     opacity: "0.3"
   };
 

@@ -2,20 +2,21 @@ import style from "./midia.module.css";
 import { useState, useEffect } from "react";
 import { DetailMovieVideosType } from "../../types";
 import { createPortal } from "react-dom";
+import { useParams } from "react-router-dom"
+import { apiMovieService } from "../../services/ServiceApiMovie";
 
 interface NavItem {
   id: number;
   name: string;
 }
 
-type Props = {
-  videos: DetailMovieVideosType[];
-};
 
-export function MidiaMovies({ videos }: Props) {
+
+export function MidiaMovies() {
   const [activeItem, setActiveItem] = useState<number | null>(1);
   const [activeModalIndex, setActiveModalIndex] = useState<number | null>(null);
   const [autoplayIndex, setAutoplayIndex] = useState<number | null>(null);
+  const [videos, setVideos] = useState<DetailMovieVideosType[]>([])
 
   const navItems: NavItem[] = [
     { id: 1, name: "Videos" },
@@ -31,8 +32,6 @@ export function MidiaMovies({ videos }: Props) {
     setActiveItem(itemId);
   };
 
-
-
   const closeModal = () => {
     setActiveModalIndex(null);
     setAutoplayIndex(null);
@@ -46,7 +45,6 @@ export function MidiaMovies({ videos }: Props) {
 
   useEffect(() => {
     const modalElement = document.getElementById(`modal-${activeModalIndex}`);
-
     const handleModalClose = () => {
       closeModal();
     };
@@ -61,6 +59,13 @@ export function MidiaMovies({ videos }: Props) {
       }
     };
   }, [activeModalIndex]);
+
+  const { filmId } = useParams()
+
+  useEffect(() => {
+    apiMovieService.getVideoFilms(Number(filmId)).then((response) =>
+    setVideos(response))
+  }, [filmId])
 
   return (
     <div className={style["container-Principal"]}>
@@ -81,7 +86,7 @@ export function MidiaMovies({ videos }: Props) {
       <div className={style["container-Principal"]}>
         {activeItem == 1 ? (
           <div className={style["container-videos"]}>
-            {videos.map((videos, index) =>
+            {videos?.map((videos, index) =>
               videos.key && index != 0 ? (
                 <div key={videos.id}>
                   <button

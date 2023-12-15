@@ -2,12 +2,17 @@ import styles from "./carouselMovie.module.css";
 import { moviesType } from "../../types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useContext } from 'react';
+import { ContextPage } from "../../Context/ContextPage";
 
 type Props = {
   movies: moviesType[];
 };
 
 export function CarouseMovies({ movies }: Props) {
+
+  const context = useContext(ContextPage);
+
 
   const URL = "https://image.tmdb.org/t/p/w500/";
   const navigate = useNavigate();
@@ -43,6 +48,11 @@ export function CarouseMovies({ movies }: Props) {
     }
   };
 
+  const handleCardClick  = (id: number) => {
+    navigate(`/detailFilms/${id}`)
+    context?.scrollTop()
+  };
+
   return (
     <div className={styles.movieRow}>
 
@@ -71,7 +81,7 @@ export function CarouseMovies({ movies }: Props) {
           }}
         >
           {movies.map((movie) => (
-            <div key={movie.id} className={styles["movieRow-item"]} onClick={()=> navigate(`/detailFilms/${movie.id}`)}>
+            <div key={movie.id} className={styles["movieRow-item"]} onClick={()=> handleCardClick(movie.id)}>
               <img src={URL + `${movie.poster_path}`} alt="" />
             </div>
           ))}

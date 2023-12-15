@@ -17,7 +17,7 @@ export const apiMovieService = {
 
   getMovies: async () => {
     const response = await http.get(API_URL + `movie/popular${KEY}&language=pt-br`)
-    return response.data.results as moviesType
+    return response.data.results as moviesType[]
   },
 
   getGenere: async () => {
@@ -52,12 +52,12 @@ export const apiMovieService = {
 
   getTopFilms: async () => {
     const response = await http.get(`movie/top_rated${KEY}&language=pt-br`)
-    return response.data.results as moviesType
+    return response.data.results as moviesType[]
   },
 
   getSoonRelease: async () => {
     const response = await http.get(`movie/upcoming${KEY}&language=pt-br`)
-    return response.data.results as moviesType
+    return response.data.results as moviesType[]
   },
 
   getAllFilms: async (page: number, genres?: string) => {
