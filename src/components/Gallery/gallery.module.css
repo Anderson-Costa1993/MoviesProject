@@ -1,0 +1,36 @@
+.container-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  width: 100%;
+  padding: 0 1em;
+}
+
+.container-gallery h1 {
+  color: #fff;
+  font-family: fantasy;
+  margin: 20px auto;
+}
+
+.container-image {
+  width: 280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-image img {
+  width: 100%;
+  margin: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 10px;
+  transform: scale(0.9);
+  transition: all ease 0.2s;
+}
+
+.container-image img:hover {
+  transform: scale(1);
+  border: solid 2px #ffffff2c;
+}
+

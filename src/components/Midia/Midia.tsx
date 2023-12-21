@@ -4,13 +4,12 @@ import { DetailMovieVideosType } from "../../types";
 import { createPortal } from "react-dom";
 import { useParams } from "react-router-dom"
 import { apiMovieService } from "../../services/ServiceApiMovie";
+import { Gallery } from "./gallery";
 
 interface NavItem {
   id: number;
   name: string;
 }
-
-
 
 export function MidiaMovies() {
   const [activeItem, setActiveItem] = useState<number | null>(1);
@@ -143,7 +142,9 @@ export function MidiaMovies() {
             )}
           </div>
         ) : activeItem == 2 ? (
-          <div>Imagens de fundo</div>
+          <div>
+            <Gallery />
+          </div>
         ) : activeItem == 3 ? (
           <div>Pôsteres</div>
         ) : null}

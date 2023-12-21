@@ -1,5 +1,5 @@
 import style from "./homepage.module.css";
-import { moviesType } from "../../types";
+import { GalleryType, moviesType } from "../../types";
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CarouseMovies } from "../../components/CarouselMovie";
@@ -12,10 +12,22 @@ export function HomePage() {
   const [movies, setMovies] = useState<moviesType[]>([]);
   const [topMovies, setTopMovies] = useState<moviesType[]>([]);
   const [soonRelease, setSoonRelease] = useState<moviesType[]>([]);
+    const [newBanner, setNewBanner] = useState<GalleryType>();
   const [Banner, setBanner] = useState<string | undefined>(
     movies.length > 0 ? `${URL + movies[0]?.backdrop_path}` : undefined
   );
   const [currentMovie, setCurrentMovie] = useState<moviesType>(movies[0]);
+
+
+
+  useEffect(() => {
+    if (currentMovie)
+      apiMovieService
+        .getImagesMovies(currentMovie.id)
+        .then((imagens) => setNewBanner(imagens));
+  }, [currentMovie]);
+
+  console.log("new", newBanner?.posters[0].file_path);
 
   useEffect(() => {
     if (movies.length > 0) {
@@ -40,6 +52,10 @@ export function HomePage() {
       .then((Response) => setSoonRelease(Response));
   }, []);
 
+
+
+
+
   const handleLeftArrow = () => {
     let x = scrollx + Math.round(window.innerWidth / 2);
     if (x > 0) {
@@ -52,7 +68,7 @@ export function HomePage() {
     if (window.innerWidth < 600) {
       let x = scrollx - Math.round(window.innerWidth / 2);
 
-      let listW = movies.length * 150;
+      let listW = movies.length * 220;
       if (window.innerWidth - listW > x) {
         x = window.innerWidth - listW - 60;
       }
@@ -67,6 +83,20 @@ export function HomePage() {
       setScrollx(x);
     }
   };
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const navigate = useNavigate();
   const context = useContext(ContextPage);
@@ -109,8 +139,7 @@ export function HomePage() {
             className={style["home-list"]}
             style={{
               marginLeft: scrollx,
-              width: movies.length * 300,
-              ...(window.innerWidth < 600 && { width: movies.length * 150 }),
+              width: windowWidth < 600 ? movies.length * 220 : movies.length * 300,
             }}
           >
             {movies.map((moviesItem: moviesType) => (

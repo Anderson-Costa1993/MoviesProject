@@ -37,6 +37,11 @@ export function SeriesPage() {
     });
   };
 
+  const navgateDetail = (id: number) => {
+    navigate(`/detailSeries/${id}`);
+    scroolTop();
+  }
+
   return (
     <div className={style["container-series"]}>
       <h1>Series</h1>
@@ -44,7 +49,7 @@ export function SeriesPage() {
         {series.map((serie) =>
           serie.poster_path ? (
           <div className={style["list-cards"]}>
-            <div className={style["container-card"]}>
+            <div className={style["container-card"]} onClick={()=> navgateDetail(serie.id)}>
               <div className={style.cards}>
                 <img src={IMG + `${serie.poster_path}`} alt="" />
                 <span className={style["serie-title"]}>

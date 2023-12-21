@@ -27,10 +27,6 @@ export function Navbar() {
                   <i className="bi bi-tv-fill"></i>
                   <a href="">Séries</a>
                 </li>
-                <li onClick={() => navigate("/teste/872585")}>
-                  <i className="bi bi-tv-fill"></i>
-                  <a href="">teste</a>
-                </li>
               </ul>
               <div className={style["search-mobile"]}>
                     <i className="bi bi-search"></i>

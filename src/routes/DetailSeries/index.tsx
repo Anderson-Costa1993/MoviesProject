@@ -1,30 +1,49 @@
+import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { apiMovieService } from "../../services/ServiceApiMovie";
+import { seriesDetailsType } from "../../types";
+import style from "./detailseries.module.css";
+import { BannerHome } from "../../components/Banner/Banner";
 
-import { useLoaderData, Await } from "react-router-dom";
-import { Suspense } from "react";
-import { LoadingPage } from "../../components/LoadingEl/LoadingPage";
-import { DetailSeriesPage } from "./DetailseriesPage";
-import { seriesBase } from "../../types";
+export function DetailSeriesPage() {
+  const IMG = `https://image.tmdb.org/t/p/w500/`;
 
-type ProductDataLoader = {
-  movies: Promise<seriesBase[]>;
-  topMovies: Promise<seriesBase[]>;
-};
+  const { serieId } = useParams();
+  const [detailSeries, setDetailSeries] = useState<seriesDetailsType>();
 
-export function DetailSeries () {
+  useEffect(() => {
+    apiMovieService
+      .getDetailSeries(Number(serieId))
+      .then((response) => setDetailSeries(response));
+  }, [serieId]);
+  if (detailSeries) console.log("series", detailSeries);
 
-  const { movies, topMovies } = useLoaderData() as ProductDataLoader;
+  const navigate = useNavigate();
+  const handleCardClick = () => {
+    navigate(-1);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <div>
-      <Suspense fallback={<LoadingPage />}>
-        <Await resolve={Promise.all([movies, topMovies])}>
-          {(resolvedProducts: [seriesBase[], seriesBase[]]) => {
-            const [resolvedMovies, resolvedTopMovies] = resolvedProducts;
-            return <DetailSeriesPage movies={resolvedMovies} topMovies={resolvedTopMovies} />;
-          }}
-        </Await>
-      </Suspense>
+      {detailSeries ? (
+        <div>
+          <div className={style.return}>
+            <i
+              className="bi bi-arrow-left"
+              onClick={() => handleCardClick()}
+            ></i>
+          </div>
+          <div>
+            <BannerHome
+              banner={{ Banner: IMG + `${detailSeries.backdrop_path}`}}
+            />
+          </div>
+        </div>
+      ) : null}
     </div>
-  )
-
+  );
 }

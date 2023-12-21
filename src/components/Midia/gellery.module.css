@@ -1,0 +1,54 @@
+.container-gallery {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.gallery {
+  display: flex;
+  width: 95%;
+  justify-content: flex-start;
+  margin: 10px auto;
+  padding: 0.2em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scroll-snap-type: x mandatory;
+  box-sizing: border-box;
+}
+.gallery::-webkit-scrollbar {
+  width: 20px;
+  height: 8px;
+}
+
+.gallery::-webkit-scrollbar-thumb {
+  background-color: #939393;
+  border-radius: 6px;
+}
+
+.gallery::-webkit-scrollbar-track {
+  background-color: #000000;
+  border-radius: 10px;
+}
+
+.card {
+  width: 400px;
+  height: 220px;
+  margin-right: 5px;
+  scroll-snap-align: start;
+  box-sizing: border-box;
+  justify-content: center;
+  display: flex;
+  opacity: 0.5;
+  transition: all ease 0.2s;
+}
+
+.card:hover {
+opacity: 9;
+}
+
+.card img {
+  width: 400px;
+  height: 220px;
+}
+

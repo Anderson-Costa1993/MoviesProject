@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import { moviesType } from "../types";
+import { GalleryType, moviesType } from "../types";
 import { GenreListType } from "../types";
 import { ColletionType } from "../types";
 import { SeriesType } from "../types";
@@ -42,7 +42,7 @@ export const apiMovieService = {
 
   getImagesMovies: async (id: number) => {
     const response = await http.get(`movie/${id}/images${KEY}`)
-    return response.data
+    return response.data as GalleryType
   },
 
   getSearchMovie: async () => {

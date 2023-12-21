@@ -70,6 +70,8 @@
 @media (max-width: 600px) {
   .movieRow {
     margin: 10px;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .movieRow-item {
@@ -80,12 +82,24 @@
 
   .movieRow-listArea {
     padding-left: 0;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+
+  .movieRow-listArea::-webkit-scrollbar {
+    width: 12px; /* Ajuste conforme necessário */
+  }
+
+  .movieRow-listArea::-webkit-scrollbar-thumb {
+    background-color: transparent;
   }
 
   .movieRow-left,
   .movieRow-right {
     height: 225px;
     opacity: 10;
-    width: 30px;
+    width: 10px;
+    display: none;
   }
 }

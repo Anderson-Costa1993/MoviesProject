@@ -4,10 +4,11 @@ import "./index.css";
 import ContextProvider from "./Context/ContextPage.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { DetailFilmsPage } from "./routes/DetailsFilms/index.tsx";
-import { TestePage } from "./routes/testes/Teste.tsx";
 import { HomePage } from "./routes/Home/index.tsx";
 import { FilmPage } from "./routes/Films/index.tsx";
 import { SeriesPage } from "./routes/Series/index.tsx";
+import { DetailSeriesPage } from "./routes/DetailSeries/index.tsx";
+import { GalleryMovie } from "./routes/GalleryMovie/GalleryMovie.tsx";
 
 const router = createBrowserRouter([
   {
@@ -32,8 +33,12 @@ const router = createBrowserRouter([
         element: <SeriesPage />,
       },
       {
-        path: "/teste/:filmId",
-        element: <TestePage />,
+        path: "/detailSeries/:serieId",
+        element: <DetailSeriesPage />,
+      },
+      {
+        path: "/detailFilms/:filmId/galleryMovie",
+        element: <GalleryMovie />,
       },
     ],
   },

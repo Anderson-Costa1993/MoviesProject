@@ -1,11 +1,10 @@
 .container-Principal {
-  display: flex;
-  margin: 8em 0;
+  margin: 8em auto;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   color: aliceblue;
-  max-width: 80%;
+  max-width: 90%;
   margin: 0.5em auto;
   box-sizing: border-box;
   overflow: hidden;
@@ -16,7 +15,7 @@
   list-style: none;
   width: 70%;
   justify-content: space-around;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   border-bottom: solid  1px #cccccc49;
 }

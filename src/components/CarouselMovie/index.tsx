@@ -1,6 +1,6 @@
 import styles from "./carouselMovie.module.css";
 import { moviesType } from "../../types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContext } from 'react';
 import { ContextPage } from "../../Context/ContextPage";
@@ -18,13 +18,26 @@ export function CarouseMovies({ movies }: Props) {
   const navigate = useNavigate();
 
   const [scrollx, setScrollx] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
 
   const handleLeftArrow = () => {
     let x = scrollx + Math.round(window.innerWidth / 2);
     if (x > 0) {
       x = 0;
     }
-
     setScrollx(x);
   };
 
@@ -34,7 +47,7 @@ export function CarouseMovies({ movies }: Props) {
 
       let listW = movies.length * 150;
       if (window.innerWidth - listW > x) {
-        x = window.innerWidth - listW - 60;
+        x = window.innerWidth - listW - 30;
       }
       setScrollx(x);
     } else {
@@ -76,8 +89,7 @@ export function CarouseMovies({ movies }: Props) {
           className={styles["movieRow-list"]}
           style={{
             marginLeft: scrollx,
-            width: movies.length * 300,
-            ...(window.innerWidth < 600 && { width: movies.length * 150 }),
+            width: windowWidth < 600 ? movies.length * 150 : movies.length * 300,
           }}
         >
           {movies.map((movie) => (

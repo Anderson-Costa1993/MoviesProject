@@ -1,18 +1,21 @@
-// Banner.tsx
+import style from "./banner.module.css"
+
+
 type Props = {
   banner: {
     Banner: string;
-  }
+  };
 };
 
 export function BannerHome({ banner }: Props) {
   const backgroundImageStyle: React.CSSProperties = {
     backgroundImage: `url(${banner.Banner})`,
-    backgroundSize: "cover",
-    backgroundPosition: "top",
+    backgroundSize: "contain",
+    height: "500px",
+    backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
-    height: "550px",
     opacity: "0.5",
+    margin: "20px auto",
   };
 
   const mobileStyle: React.CSSProperties = {
@@ -21,11 +24,17 @@ export function BannerHome({ banner }: Props) {
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     height: "550px",
-    opacity: "0.3"
+    opacity: "0.3",
   };
 
-
-return (
-  <div style={{ ...backgroundImageStyle, ...(window.innerWidth < 600 && mobileStyle) }}></div>
-  )
+  return (
+    <div className={style.banner}>
+      <div
+        style={{
+          ...backgroundImageStyle,
+          ...(window.innerWidth < 600 && mobileStyle),
+        }}
+      ></div>
+    </div>
+  );
 }
