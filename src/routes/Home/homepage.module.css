@@ -27,7 +27,7 @@
   color: #fff;
   font-size: 32px;
   font-weight: bold;
-  font-family: 'Julius Sans One', sans-serif;
+  font-family: "Julius Sans One", sans-serif;
   letter-spacing: 1.5px;
 }
 
@@ -42,6 +42,12 @@
   position: absolute;
   left: 0;
   right: 0;
+}
+
+.banner .logo-img{
+  width: 350px;
+  height: 150px;
+  margin: 0 auto;
 }
 
 .container-home {
@@ -65,7 +71,6 @@
   cursor: pointer;
 }
 
-
 .card img {
   width: 100%;
   height: 225px;
@@ -79,7 +84,8 @@
   border: solid 2px #eeeeee;
 }
 
-.movieRow-left, .movieRow-right {
+.movieRow-left,
+.movieRow-right {
   position: absolute;
   width: 40px;
   height: 225px;
@@ -101,8 +107,8 @@
   right: 0;
 }
 
-
-.movieRow-left i, .movieRow-right i {
+.movieRow-left i,
+.movieRow-right i {
   background-color: rgba(14, 14, 14, 0.615);
   padding: 0.3em;
   border-radius: 50px;
@@ -113,7 +119,7 @@
   opacity: 10;
 }
 
-.topMoviesSection  {
+.topMoviesSection {
   display: flex;
   flex-direction: column;
 }
@@ -123,7 +129,7 @@
   color: #fff;
   font-weight: bold;
   margin-left: 2em;
-  font-family: 'Julius Sans One', sans-serif;
+  font-family: "Julius Sans One", sans-serif;
   font-size: 18px;
   text-transform: uppercase;
 }
@@ -138,7 +144,7 @@
   color: #fff;
   font-weight: bold;
   margin-left: 2em;
-  font-family: 'Julius Sans One', sans-serif;
+  font-family: "Julius Sans One", sans-serif;
   font-size: 18px;
   text-transform: uppercase;
 }
@@ -176,11 +182,11 @@
 
   .home-listArea::-webkit-scrollbar {
     width: 12px; /* Ajuste conforme necessário */
-}
+  }
 
-.home-listArea::-webkit-scrollbar-thumb {
+  .home-listArea::-webkit-scrollbar-thumb {
     background-color: transparent;
-}
+  }
 
   .lancamento h1 {
     margin: 0.5em 0;
@@ -189,7 +195,8 @@
     margin: 0.5em 0;
   }
 
-  .movieRow-left, .movieRow-right {
+  .movieRow-left,
+  .movieRow-right {
     opacity: 10;
     width: 10px;
     display: flex;

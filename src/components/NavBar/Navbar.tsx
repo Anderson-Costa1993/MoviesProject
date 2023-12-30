@@ -9,7 +9,7 @@ export function Navbar() {
       <div className={style["container-principal"]}>
         <div className={style["container-nav"]}>
           <div className={style.logo}>
-            <a href="">NetMovie</a>
+            <a href="/">NetMovie</a>
             <i className="bi bi-collection-play-fill"></i>
           </div>
           <nav className={style.nav}>
@@ -19,7 +19,7 @@ export function Navbar() {
                   <i className="bi bi-house-fill"></i>
                   <a href="">Início</a>
                 </li>
-                <li onClick={() => navigate(`/films/${1}`)}>
+                <li onClick={() => navigate(`/filmes`)}>
                   <i className="bi bi-film"></i>
                   <a href="">Filmes</a>
                 </li>

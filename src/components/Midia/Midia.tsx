@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { useParams } from "react-router-dom"
 import { apiMovieService } from "../../services/ServiceApiMovie";
 import { Gallery } from "./gallery";
+import { Posteres } from "./posteres";
 
 interface NavItem {
   id: number;
@@ -35,7 +36,6 @@ export function MidiaMovies() {
     setActiveModalIndex(null);
     setAutoplayIndex(null);
   };
-
 
   const openModal = (index: number) => {
     setActiveModalIndex(index);
@@ -83,7 +83,7 @@ export function MidiaMovies() {
         ))}
       </ul>
       <div className={style["container-Principal"]}>
-        {activeItem == 1 ? (
+        { activeItem == 1 ? (
           <div className={style["container-videos"]}>
             {videos?.map((videos, index) =>
               videos.key && index != 0 ? (
@@ -146,7 +146,9 @@ export function MidiaMovies() {
             <Gallery />
           </div>
         ) : activeItem == 3 ? (
-          <div>Pôsteres</div>
+          <div>
+            <Posteres />
+          </div>
         ) : null}
       </div>
     </div>

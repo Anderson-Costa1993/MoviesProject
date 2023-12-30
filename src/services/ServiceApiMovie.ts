@@ -25,6 +25,15 @@ export const apiMovieService = {
     return response.data
   },
 
+  getAllFilms: async (page: number, genres?: string) => {
+    let url = `discover/movie${KEY}&language=pt-br&page=${page}`;
+    if (genres) {
+      url += `&with_genres=${genres}`;
+    }
+    const response = await http.get(url);
+  return response.data.results as moviesType[];
+  },
+
   getDetailsFilmes: async (id: number) => {
     const response = await http.get(`movie/${id + KEY}&language=pt-br`)
     return response.data
@@ -60,14 +69,7 @@ export const apiMovieService = {
     return response.data.results as moviesType[]
   },
 
-  getAllFilms: async (page: number, genres?: string) => {
-    let url = `discover/movie${KEY}&language=pt-br&page=${page}`;
-    if (genres) {
-      url += `&with_genres=${genres}`;
-    }
-    const response = await http.get(url);
-  return response.data.results as moviesType[];
-  },
+
 
   getAllMovies: async (page: number, genres?: string) => {
     let url = `discover/movie${KEY}&language=pt-br&page=${page}`;

@@ -1,14 +1,16 @@
-import style from "./gellery.module.css";
 import { apiMovieService } from "../../services/ServiceApiMovie";
 import { useParams } from "react-router-dom";
 import { LoadingPage } from "../LoadingEl/LoadingPage";
 import { useRequest } from "ahooks";
+import style from "./posteres.module.css"
 
-export function Gallery() {
+export function Posteres() {
+
   const { id } = useParams();
+  const URL_IMG = "https://image.tmdb.org/t/p/w500/";
 
   const {
-    data: images,
+    data: posteres,
     loading,
     error,
   } = useRequest(() => apiMovieService.getImagesMovies(Number(id)), {
@@ -19,13 +21,12 @@ export function Gallery() {
   if (loading) return <LoadingPage />;
   if (error) return <h1>Error</h1>;
 
-  const URL_IMG = "https://image.tmdb.org/t/p/w500/";
-
-  return (
-    <div className={style['container-gallery']}>
-      {images ? (
+  return(
+    <div>
+        <div className={style['container-gallery']}>
+      {posteres ? (
         <div className={style.gallery}>
-          {images.backdrops.slice(0, 10).map((imagem) => (
+          {posteres.posters.slice(0, 10).map((imagem) => (
             <div className={style.card} key={imagem.file_path}>
               <img src={URL_IMG + `${imagem.file_path}`} alt="" />
             </div>
@@ -33,8 +34,11 @@ export function Gallery() {
         </div>
       ) : null}
       <div>
-        <a href={`/filmes/${(Number(id))}/gallery`}>Ver mais</a>
+        <a href={`/filmes/${(Number(id))}/posteres`}>Ver mais</a>
       </div>
     </div>
-  );
+
+    </div>
+  )
+
 }

@@ -9,6 +9,7 @@ import { FilmPage } from "./routes/Films/index.tsx";
 import { SeriesPage } from "./routes/Series/index.tsx";
 import { DetailSeriesPage } from "./routes/DetailSeries/index.tsx";
 import { GalleryMovie } from "./routes/GalleryMovie/GalleryMovie.tsx";
+import { PostestesPage } from "./routes/PosteresFilmes/PostestesPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -20,13 +21,20 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "/detailFilms/:filmId",
+        path: "/filmes",
+        element: <FilmPage />,
+      },
+      {
+        path: "/filmes/:id",
         element: <DetailFilmsPage />,
       },
       {
-        path: "/films/:page/:genres?",
-
-        element: <FilmPage />,
+        path: "/filmes/:id/gallery",
+        element: <GalleryMovie />,
+      },
+      {
+        path: "/filmes/:id/posteres",
+        element: <PostestesPage />,
       },
       {
         path: "/series/:page/:sort_by",
@@ -35,10 +43,6 @@ const router = createBrowserRouter([
       {
         path: "/detailSeries/:serieId",
         element: <DetailSeriesPage />,
-      },
-      {
-        path: "/detailFilms/:filmId/galleryMovie",
-        element: <GalleryMovie />,
       },
     ],
   },

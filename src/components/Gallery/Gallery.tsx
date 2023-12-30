@@ -1,21 +1,31 @@
-import { GalleryType } from "../../types";
+
 import style from "./gallery.module.css";
-import { BannerHome } from "../Banner/Banner";
+import { useParams } from "react-router-dom";
+import { LoadingPage } from "../LoadingEl/LoadingPage";
+import { useRequest } from "ahooks";
+import { apiMovieService } from "../../services/ServiceApiMovie";
 
-type Props = {
-  images: GalleryType | undefined;
-};
+export function GalleryEl() {
 
-export function GalleryEl({ images }: Props) {
-  if (images) console.log(images);
   const URL_IMG = "https://image.tmdb.org/t/p/w500/";
+
+  const { id } = useParams();
+  
+  const {
+    data: images,
+    loading,
+    error,
+  } = useRequest(() => apiMovieService.getImagesMovies(Number(id)), {
+    refreshDeps: [id],
+    cacheTime: -1,
+  });
+
+  if (loading) return <LoadingPage />;
+  if (error) return <h1>Error</h1>;
 
   return (
     <div className={style["container-gallery"]}>
       <h1>Planos de Fundo</h1>
-      <div style={{width: "100%"}}>
-        <BannerHome banner={{ Banner: URL_IMG + `${images?.backdrops[1].file_path}`}} />
-      </div>
       <div className={style["container-gallery"]}>
         {images
           ? images.posters.map((poster) => (

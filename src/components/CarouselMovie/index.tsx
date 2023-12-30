@@ -62,7 +62,7 @@ export function CarouseMovies({ movies }: Props) {
   };
 
   const handleCardClick  = (id: number) => {
-    navigate(`/detailFilms/${id}`)
+    navigate(`/filmes/${id}`)
     context?.scrollTop()
   };
 

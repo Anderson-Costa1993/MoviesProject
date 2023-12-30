@@ -1,10 +1,12 @@
 import style from "./homepage.module.css";
-import { GalleryType, moviesType } from "../../types";
+import {  moviesType } from "../../types";
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CarouseMovies } from "../../components/CarouselMovie";
 import { ContextPage } from "../../Context/ContextPage";
 import { apiMovieService } from "../../services/ServiceApiMovie";
+import { useRequest } from "ahooks";
+import { LoadingPage } from "../../components/LoadingEl/LoadingPage";
 
 export function HomePage() {
   const URL = "https://image.tmdb.org/t/p/w500/";
@@ -12,22 +14,19 @@ export function HomePage() {
   const [movies, setMovies] = useState<moviesType[]>([]);
   const [topMovies, setTopMovies] = useState<moviesType[]>([]);
   const [soonRelease, setSoonRelease] = useState<moviesType[]>([]);
-    const [newBanner, setNewBanner] = useState<GalleryType>();
   const [Banner, setBanner] = useState<string | undefined>(
     movies.length > 0 ? `${URL + movies[0]?.backdrop_path}` : undefined
   );
   const [currentMovie, setCurrentMovie] = useState<moviesType>(movies[0]);
 
-
-
-  useEffect(() => {
-    if (currentMovie)
-      apiMovieService
-        .getImagesMovies(currentMovie.id)
-        .then((imagens) => setNewBanner(imagens));
-  }, [currentMovie]);
-
-  console.log("new", newBanner?.posters[0].file_path);
+  const {
+    data: images,
+    loading,
+    error,
+  } = useRequest(() => apiMovieService.getImagesMovies(currentMovie.id), {
+    refreshDeps: [currentMovie],
+    cacheTime: -1,
+  });
 
   useEffect(() => {
     if (movies.length > 0) {
@@ -51,10 +50,6 @@ export function HomePage() {
       .getSoonRelease()
       .then((Response) => setSoonRelease(Response));
   }, []);
-
-
-
-
 
   const handleLeftArrow = () => {
     let x = scrollx + Math.round(window.innerWidth / 2);
@@ -102,15 +97,28 @@ export function HomePage() {
   const context = useContext(ContextPage);
 
   const handleCardClick = (id: number) => {
-    navigate(`/detailFilms/${id}`);
+    navigate(`/filmes/${id}`);
     context?.scrollTop();
   };
+
+  if (loading) return <LoadingPage />;
+  if (error) return <h1>Error</h1>;
 
   return (
     <>
       <div className={style.banner}>
-        <img src={`${URL + Banner}`} alt="" />
+        <img src={`${URL + Banner}`} alt="imagem bannder do filme" />
         <div className={style["banner-bg"]}>
+        <div>
+
+          {images?.logos.slice(0, 1).map((logo) => logo.file_path ? (
+              <img
+              src={URL + `${logo.file_path}`}
+              alt="imagem nome do filme"
+              className={style["logo-img"]}
+            />
+          ): null)}
+        </div>
           <div className={style["banner-info"]}>
             <h1 className={style?.title}>{currentMovie?.title}</h1>
             <span>{currentMovie?.release_date}</span>
@@ -139,7 +147,8 @@ export function HomePage() {
             className={style["home-list"]}
             style={{
               marginLeft: scrollx,
-              width: windowWidth < 600 ? movies.length * 220 : movies.length * 300,
+              width:
+                windowWidth < 600 ? movies.length * 220 : movies.length * 300,
             }}
           >
             {movies.map((moviesItem: moviesType) => (

@@ -11,12 +11,12 @@ import { Collection } from "../../components/Collection";
 import { LoadingPage } from "../../components/LoadingEl/LoadingPage";
 
 interface RouteParams {
-  filmId?: string;
+  id?: string;
   [key: string]: string | undefined;
 }
 
 export function DetailFilmsPage() {
-  let { filmId } = useParams<RouteParams>();
+  let {  id } = useParams<RouteParams>();
   const [filmDetails, setFilmDetails] = useState<DetailsMovie>();
   const [filmDetailVideos, setFilmDetailVideos] =
     useState<DetailMovieVideosType[]>();
@@ -24,9 +24,6 @@ export function DetailFilmsPage() {
   const IMG = `https://image.tmdb.org/t/p/w500/`;
   const [duracaoFormatada, setDuracaoFormatada] = useState("");
   const [modalIndex, setModalIndex] = useState<number | boolean>(false);
-  const [carregado, setCarregado] = useState(false);
-
-  console.log(carregado)
 
   const formatarDuracao = (duracaoEmMinutos: number) => {
     const horas = Math.floor(duracaoEmMinutos / 60);
@@ -72,27 +69,27 @@ export function DetailFilmsPage() {
     setDuracaoFormatada(formatarDuracao(Number(filmDetails?.runtime)));
   }, [filmDetails?.runtime]);
 
-  if (filmId !== undefined) {
-    const filmIdNumber: number = parseInt(filmId, 10);
+  if ( id !== undefined) {
+    const filmIdNumber: number = parseInt( id, 10);
     useEffect(() => {
-      apiMovieService
-        .getDetailsFilmes(filmIdNumber)
-        .then((response) => setFilmDetails(response));
-        setCarregado(true);
-    }, [filmId]);
+      apiMovieService.getDetailsFilmes(filmIdNumber).then((response) => {
+        setFilmDetails(response);
+
+      });
+    }, [ id]);
   }
 
   useEffect(() => {
     setDuracaoFormatada(formatarDuracao(Number(filmDetails?.runtime)));
   }, [filmDetails?.runtime]);
 
-  if (filmId !== undefined) {
-    const filmIdNumber: number = parseInt(filmId, 10);
+  if ( id !== undefined) {
+    const filmIdNumber: number = parseInt( id, 10);
     useEffect(() => {
       apiMovieService
         .getVideoFilms(filmIdNumber)
         .then((response) => setFilmDetailVideos(response));
-    }, [filmId]);
+    }, [ id]);
   }
 
   return (
@@ -182,7 +179,7 @@ export function DetailFilmsPage() {
             ) : null}
           </div>
           <div>
-            <MidiaMovies  />
+            <MidiaMovies />
           </div>
           <div>
             {filmDetails.belongs_to_collection?.id ? (
@@ -193,7 +190,9 @@ export function DetailFilmsPage() {
           </div>
         </div>
       ) : (
-        <div><LoadingPage /></div>
+        <div>
+          <LoadingPage />
+        </div>
       )}
     </div>
   );

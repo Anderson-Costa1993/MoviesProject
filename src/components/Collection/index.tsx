@@ -28,7 +28,7 @@ export function Collection({ CollectionId }: Props) {
       top: 0,
       behavior: "smooth",
     });
-    navigate(`/detailFilms/${id}`);
+    navigate(`/filmes/${id}`);
   };
 
   return (
