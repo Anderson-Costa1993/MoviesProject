@@ -9,6 +9,8 @@ import { ModalMovie } from "../../components/ModalMovies";
 import { MidiaMovies } from "../../components/Midia/Midia";
 import { Collection } from "../../components/Collection";
 import { LoadingPage } from "../../components/LoadingEl/LoadingPage";
+import {  CardMoviesDetails } from "../../components/CardDatails";
+import { useRequest } from "ahooks";
 
 interface RouteParams {
   id?: string;
@@ -21,7 +23,7 @@ export function DetailFilmsPage() {
   const [filmDetailVideos, setFilmDetailVideos] =
     useState<DetailMovieVideosType[]>();
   const navigate = useNavigate();
-  const IMG = `https://image.tmdb.org/t/p/w500/`;
+  const IMG = `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/`;
   const [duracaoFormatada, setDuracaoFormatada] = useState("");
   const [modalIndex, setModalIndex] = useState<number | boolean>(false);
 
@@ -92,6 +94,18 @@ export function DetailFilmsPage() {
     }, [ id]);
   }
 
+  const {
+    data: images,
+    loading,
+    error,
+  } = useRequest(() => apiMovieService.getImagesMovies(Number(id)), {
+    refreshDeps: [id],
+    cacheTime: -1,
+  });
+
+  if (loading) return <LoadingPage />;
+  if (error) return <h1>Error</h1>;
+
   return (
     <div>
       {filmDetails ? (
@@ -104,12 +118,12 @@ export function DetailFilmsPage() {
           </div>
           <div>
             <BannerHome
-              banner={{ Banner: IMG + `${filmDetails?.backdrop_path}` }}
+              banner={{ Banner: IMG + `${images?.backdrops[1].file_path}` }}
             />
             <section className={style["contain-bg"]}>
               <div className={style.description}>
                 <div>
-                  <img src={IMG + `${filmDetails?.poster_path}`} alt="" />
+                  <CardMoviesDetails movies={filmDetails.backdrop_path} />
                 </div>
                 <div className={style.info}>
                   <h1>

@@ -49,13 +49,11 @@
 
 .contain-bg .description {
   display: flex;
-  width: 40%;
   position: absolute;
   top: 220px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   margin: 0 auto;
-  background: rgba(0, 0, 0, 0.454);
 }
 
 .info {

@@ -38,7 +38,7 @@ export function SeriesPage() {
   };
 
   const navgateDetail = (id: number) => {
-    navigate(`/detailSeries/${id}`);
+    navigate(`/series/${id}`);
     scroolTop();
   }
 

@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import { GalleryType, moviesType } from "../types";
 import { GenreListType } from "../types";
@@ -69,8 +68,6 @@ export const apiMovieService = {
     return response.data.results as moviesType[]
   },
 
-
-
   getAllMovies: async (page: number, genres?: string) => {
     let url = `discover/movie${KEY}&language=pt-br&page=${page}`;
     if (genres) {
@@ -92,7 +89,7 @@ export const apiMovieService = {
 
   getOriginaisNetflix: async () => {
     const response = await http.get(`discover/tv${KEY}&with_networks=213&language=pt`)
-    return response.data as moviesType[]
+    return response.data.results as SeriesType[]
   }
 
 }

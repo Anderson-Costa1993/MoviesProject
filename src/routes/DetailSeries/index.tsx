@@ -4,18 +4,19 @@ import { apiMovieService } from "../../services/ServiceApiMovie";
 import { seriesDetailsType } from "../../types";
 import style from "./detailseries.module.css";
 import { BannerHome } from "../../components/Banner/Banner";
+import { CardMoviesDetails } from "../../components/CardDatails";
 
 export function DetailSeriesPage() {
-  const IMG = `https://image.tmdb.org/t/p/w500/`;
+  const IMG_Banner = `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/`;
 
-  const { serieId } = useParams();
+  const { id } = useParams();
   const [detailSeries, setDetailSeries] = useState<seriesDetailsType>();
 
   useEffect(() => {
     apiMovieService
-      .getDetailSeries(Number(serieId))
+      .getDetailSeries(Number(id))
       .then((response) => setDetailSeries(response));
-  }, [serieId]);
+  }, [id]);
   if (detailSeries) console.log("series", detailSeries);
 
   const navigate = useNavigate();
@@ -37,10 +38,15 @@ export function DetailSeriesPage() {
               onClick={() => handleCardClick()}
             ></i>
           </div>
-          <div>
+          <div className={style["container-banner"]}>
             <BannerHome
-              banner={{ Banner: IMG + `${detailSeries.backdrop_path}`}}
+              banner={{ Banner: IMG_Banner + `${detailSeries.backdrop_path}` }}
             />
+          </div>
+          <div className={style["container-infBg"]}>
+            <div className={style.card}>
+              <CardMoviesDetails series={detailSeries.backdrop_path} />
+            </div>
           </div>
         </div>
       ) : null}

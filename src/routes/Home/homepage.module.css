@@ -150,22 +150,25 @@
 }
 
 @media (max-width: 600px) {
-  .banner {
-    height: 400px;
-    margin-top: 40px;
-  }
-  .banner img {
-    height: 400px;
+
+
+  .banner  {
+    display: none;
   }
 
   .container-home {
-    margin: -120px 15px 0 15px;
+    margin: 80px 15px 0 15px;
+    height: 600px;
   }
 
   .card {
     display: inline-block;
-    width: 220px;
+    width: 550px;
     cursor: pointer;
+  }
+
+  .card img {
+    height: 600px;
   }
 
   .movieRow-listArea {
@@ -199,6 +202,9 @@
   .movieRow-right {
     opacity: 10;
     width: 10px;
+    margin: 10px;
     display: flex;
   }
+
+
 }

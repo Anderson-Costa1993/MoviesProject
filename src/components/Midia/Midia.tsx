@@ -59,12 +59,12 @@ export function MidiaMovies() {
     };
   }, [activeModalIndex]);
 
-  const { filmId } = useParams()
+  const { id } = useParams()
 
   useEffect(() => {
-    apiMovieService.getVideoFilms(Number(filmId)).then((response) =>
+    apiMovieService.getVideoFilms(Number(id)).then((response) =>
     setVideos(response))
-  }, [filmId])
+  }, [id])
 
   return (
     <div className={style["container-Principal"]}>

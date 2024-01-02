@@ -1,18 +1,17 @@
 import styles from "./carouselMovie.module.css";
-import { moviesType } from "../../types";
+import { SeriesType, moviesType } from "../../types";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useContext } from 'react';
+import { useContext } from "react";
 import { ContextPage } from "../../Context/ContextPage";
 
 type Props = {
-  movies: moviesType[];
+  movies?: moviesType[];
+  series?: SeriesType[];
 };
 
-export function CarouseMovies({ movies }: Props) {
-
+export function CarouseMovies({ movies, series }: Props) {
   const context = useContext(ContextPage);
-
 
   const URL = "https://image.tmdb.org/t/p/w500/";
   const navigate = useNavigate();
@@ -32,7 +31,6 @@ export function CarouseMovies({ movies }: Props) {
     };
   }, []);
 
-
   const handleLeftArrow = () => {
     let x = scrollx + Math.round(window.innerWidth / 2);
     if (x > 0) {
@@ -41,8 +39,8 @@ export function CarouseMovies({ movies }: Props) {
     setScrollx(x);
   };
 
-  const handleRightArrow = () => {
-    if (window.innerWidth < 600) {
+  const handleRightArrowMovies = () => {
+    if (movies && window.innerWidth < 600) {
       let x = scrollx - Math.round(window.innerWidth / 2);
 
       let listW = movies.length * 150;
@@ -50,7 +48,7 @@ export function CarouseMovies({ movies }: Props) {
         x = window.innerWidth - listW - 30;
       }
       setScrollx(x);
-    } else {
+    } else if (movies) {
       let x = scrollx - Math.round(window.innerWidth / 2);
 
       let listW = movies.length * 300;
@@ -61,45 +59,117 @@ export function CarouseMovies({ movies }: Props) {
     }
   };
 
-  const handleCardClick  = (id: number) => {
-    navigate(`/filmes/${id}`)
-    context?.scrollTop()
+  const handleRightArrowSeries = () => {
+    if (series && window.innerWidth < 600) {
+      let x = scrollx - Math.round(window.innerWidth / 2);
+
+      let listW = series.length * 150;
+      if (window.innerWidth - listW > x) {
+        x = window.innerWidth - listW - 30;
+      }
+      setScrollx(x);
+    } else if (series) {
+      let x = scrollx - Math.round(window.innerWidth / 2);
+
+      let listW = series.length * 300;
+      if (window.innerWidth - listW > x) {
+        x = window.innerWidth - listW - 60;
+      }
+      setScrollx(x);
+    }
+  };
+
+  const handleCardClick = (id: number) => {
+    navigate(`/filmes/${id}`);
+    context?.scrollTop();
+  };
+
+  const handleCardClickSeries = (id: number) => {
+    navigate(`/series/${id}`);
+    context?.scrollTop();
   };
 
   return (
-    <div className={styles.movieRow}>
+    <div>
+      {movies ? (
+        <div className={styles.movieRow}>
+          <div className={styles["movieRow-left"]}>
+            <i
+              className="bi bi-chevron-left"
+              style={{ fontSize: "24px", color: "#fff" }}
+              onClick={handleLeftArrow}
+            ></i>
+          </div>
+          <div className={styles["movieRow-right"]}>
+            <i
+              className="bi bi-chevron-right"
+              style={{ fontSize: "24px", color: "#fff" }}
+              onClick={handleRightArrowMovies}
+            ></i>
+          </div>
 
-      <div className={styles["movieRow-left"]}>
-        <i
-          className="bi bi-chevron-left"
-          style={{ fontSize: "24px", color: "#fff" }}
-          onClick={handleLeftArrow}
-        ></i>
-      </div>
-      <div className={styles["movieRow-right"]}>
-        <i
-          className="bi bi-chevron-right"
-          style={{ fontSize: "24px", color: "#fff" }}
-          onClick={handleRightArrow}
-        ></i>
-      </div>
-
-      <div className={styles["movieRow-listArea"]}>
-        <div
-          className={styles["movieRow-list"]}
-          style={{
-            marginLeft: scrollx,
-            width: windowWidth < 600 ? movies.length * 150 : movies.length * 300,
-          }}
-        >
-          {movies.map((movie) => (
-            <div key={movie.id} className={styles["movieRow-item"]} onClick={()=> handleCardClick(movie.id)}>
-              <img src={URL + `${movie.poster_path}`} alt="" />
+          <div className={styles["movieRow-listArea"]}>
+            <div
+              className={styles["movieRow-list"]}
+              style={{
+                marginLeft: scrollx,
+                width:
+                  windowWidth < 600 ? movies.length * 150 : movies.length * 300,
+              }}
+            >
+              {movies.map((movie) => (
+                <div
+                  key={movie.id}
+                  className={styles["movieRow-item"]}
+                  onClick={() => handleCardClick(movie.id)}
+                >
+                  <img src={URL + `${movie.poster_path}`} alt="" />
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
-      </div>
+      ) : null}
 
+{series ? (
+        <div className={styles.movieRow}>
+          <div className={styles["movieRow-left"]}>
+            <i
+              className="bi bi-chevron-left"
+              style={{ fontSize: "24px", color: "#fff" }}
+              onClick={handleLeftArrow}
+            ></i>
+          </div>
+          <div className={styles["movieRow-right"]}>
+            <i
+              className="bi bi-chevron-right"
+              style={{ fontSize: "24px", color: "#fff" }}
+              onClick={handleRightArrowSeries}
+            ></i>
+          </div>
+
+          <div className={styles["movieRow-listArea"]}>
+            <div
+              className={styles["movieRow-list"]}
+              style={{
+                marginLeft: scrollx,
+                width:
+                  windowWidth < 600 ? series.length * 150 : series.length * 300,
+              }}
+            >
+              {series.map((series) => (
+                <div
+                  key={series.id}
+                  className={styles["movieRow-item"]}
+                  onClick={() => handleCardClickSeries(series.id)}
+                >
+                  <img src={URL + `${series.poster_path}`} alt="" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

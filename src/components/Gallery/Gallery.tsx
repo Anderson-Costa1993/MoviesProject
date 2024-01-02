@@ -7,10 +7,10 @@ import { apiMovieService } from "../../services/ServiceApiMovie";
 
 export function GalleryEl() {
 
-  const URL_IMG = "https://image.tmdb.org/t/p/w500/";
+  const URL_IMG = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/";
 
   const { id } = useParams();
-  
+
   const {
     data: images,
     loading,
@@ -28,7 +28,7 @@ export function GalleryEl() {
       <h1>Planos de Fundo</h1>
       <div className={style["container-gallery"]}>
         {images
-          ? images.posters.map((poster) => (
+          ? images.backdrops.map((poster) => (
               <div className={style["container-image"]}>
                 <img
                   className="h-auto max-w-full rounded-lg"

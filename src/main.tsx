@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <HomePage />,
       },
       {
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
         element: <SeriesPage />,
       },
       {
-        path: "/detailSeries/:serieId",
+        path: "/series/:id",
         element: <DetailSeriesPage />,
       },
     ],

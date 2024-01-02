@@ -4,6 +4,21 @@
 
 .return i {
   color: #fff;
-  margin-right: 20px;
   font-size: 24px;
+  margin: 15px;
+  position: absolute;
+  z-index: 100;
+}
+
+.container-infBg {
+  display: flex;
+  position: absolute;
+  top: 220px;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 auto; 
+}
+
+.card {
+  width: 300px;
 }
