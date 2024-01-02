@@ -63,7 +63,7 @@ export function HomePage() {
 
   const handleLeftArrow = () => {
     if (window.innerWidth < 600) {
-      let x = scrollx + Math.round(window.innerWidth / 1.07);
+      let x = scrollx + Math.round(window.innerWidth / 1);
       if (x > 0) {
         x = 0;
       }
@@ -79,9 +79,9 @@ export function HomePage() {
 
   const handleRightArrow = () => {
     if (window.innerWidth < 600) {
-      let x = scrollx - Math.round(window.innerWidth / 1.07);
+      let x = scrollx - Math.round(window.innerWidth / 1.1);
 
-      let listW = movies.length * 550;
+      let listW = movies.length * 400;
       if (window.innerWidth - listW > x) {
         x = window.innerWidth - listW - 60;
       }
@@ -173,7 +173,7 @@ export function HomePage() {
             style={{
               marginLeft: scrollx,
               width:
-                windowWidth < 600 ? movies.length * 550 : movies.length * 300,
+                windowWidth < 600 ? movies.length * 400 : movies.length * 300,
             }}
           >
             {movies.map((moviesItem: moviesType) => (
