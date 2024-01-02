@@ -28,6 +28,8 @@ export function DetailSeriesPage() {
     });
   };
 
+  console.log(detailSeries)
+
   return (
     <div>
       {detailSeries ? (

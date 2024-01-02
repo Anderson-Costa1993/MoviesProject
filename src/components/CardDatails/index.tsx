@@ -1,6 +1,5 @@
 import style from "./cardDetails.module.css";
 
-
 type Props = {
   movies?: string;
   series?: string;
