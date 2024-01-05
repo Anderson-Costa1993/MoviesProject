@@ -5,7 +5,7 @@ type Props = {
   series?: string;
 };
 
-export function CardMoviesDetails({ movies, series }: Props) {
+export function CardDetails({ movies, series }: Props) {
   console.log("card", movies);
 
   const URL_Image = "https://image.tmdb.org/t/p/w300_and_h450_bestv2";

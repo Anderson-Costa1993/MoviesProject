@@ -7,7 +7,7 @@ type Props = {
   closeModal: () => void;
 };
 
-export function ModalMovie({ video, modalIndex, closeModal }: Props) {
+export function ModalVideos({ video, modalIndex, closeModal }: Props) {
   return (
     <div className={style["container-modal"]}>
       {video.map((item, index) =>

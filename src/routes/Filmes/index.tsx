@@ -1,5 +1,5 @@
 import { Pagination } from "../../components/Pagination";
-import style from "./filmsPage.module.css";
+import style from "./filmesPage.module.css";
 import { useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { GenreType } from "../../types";
@@ -9,7 +9,7 @@ import { apiMovieService } from "../../services/ServiceApiMovie";
 import { LoadingPage } from "../../components/LoadingEl/LoadingPage";
 import { useRequest } from "ahooks";
 
-export function FilmPage() {
+export function FilmesPage() {
   const IMG = `https://image.tmdb.org/t/p/w500/`;
   const [searchParams] = useSearchParams();
   const page = searchParams.get("page") || "1";

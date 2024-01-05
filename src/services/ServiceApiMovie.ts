@@ -77,8 +77,8 @@ export const apiMovieService = {
   return response.data.results as moviesType[];
   },
 
-  getSeriesRecents: async (page: number,  sort_by: string) => {
-    const response = await http.get(`discover/tv${KEY}&with_networks=&language=pt-br&page=${page}&sort_by=${sort_by}.desc`)
+  getSeriesRecents: async (page: number) => {
+    const response = await http.get(`discover/tv${KEY}&with_networks=&language=pt-br&page=${page}`)
     return response.data.results as SeriesType[]
   },
 

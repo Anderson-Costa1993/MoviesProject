@@ -1,16 +1,16 @@
 import styles from "./carouselMovie.module.css";
-import { SeriesType, moviesType } from "../../types";
+import { SeriesType, MoviesType } from "../../../types";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { ContextPage } from "../../Context/ContextPage";
+import { ContextPage } from "../../../Context/ContextPage";
 
 type Props = {
-  movies?: moviesType[];
+  movies?: MoviesType[];
   series?: SeriesType[];
 };
 
-export function CarouseMovies({ movies, series }: Props) {
+export function Carousel({ movies, series }: Props) {
   const context = useContext(ContextPage);
 
   const URL = "https://image.tmdb.org/t/p/w500/";
@@ -131,7 +131,7 @@ export function CarouseMovies({ movies, series }: Props) {
         </div>
       ) : null}
 
-{series ? (
+      {series ? (
         <div className={styles.movieRow}>
           <div className={styles["movieRow-left"]}>
             <i

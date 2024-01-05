@@ -3,9 +3,9 @@ import App from "./App.tsx";
 import "./index.css";
 import ContextProvider from "./Context/ContextPage.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { DetailFilmsPage } from "./routes/DetailsFilms/index.tsx";
+import { DetailFilmesPage } from "./routes/DetailFilmes/index.tsx";
 import { HomePage } from "./routes/Home/index.tsx";
-import { FilmPage } from "./routes/Films/index.tsx";
+import { FilmesPage } from "./routes/Filmes/index.tsx";
 import { SeriesPage } from "./routes/Series/index.tsx";
 import { DetailSeriesPage } from "./routes/DetailSeries/index.tsx";
 import { GalleryMovie } from "./routes/GalleryMovie/GalleryMovie.tsx";
@@ -22,11 +22,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/filmes",
-        element: <FilmPage />,
+        element: <FilmesPage />,
       },
       {
         path: "/filmes/:id",
-        element: <DetailFilmsPage />,
+        element: <DetailFilmesPage />,
       },
       {
         path: "/filmes/:id/gallery",
@@ -37,7 +37,7 @@ const router = createBrowserRouter([
         element: <PostestesPage />,
       },
       {
-        path: "/series/:page/:sort_by",
+        path: "/series",
         element: <SeriesPage />,
       },
       {

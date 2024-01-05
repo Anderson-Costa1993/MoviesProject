@@ -4,7 +4,7 @@ import { apiMovieService } from "../../services/ServiceApiMovie";
 import { seriesDetailsType } from "../../types";
 import style from "./detailseries.module.css";
 import { BannerHome } from "../../components/Banner/Banner";
-import { CardMoviesDetails } from "../../components/CardDatails";
+import { CardDetails } from "../../components/CardDatails";
 
 export function DetailSeriesPage() {
   const IMG_Banner = `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/`;
@@ -47,7 +47,8 @@ export function DetailSeriesPage() {
           </div>
           <div className={style["container-infBg"]}>
             <div className={style.card}>
-              <CardMoviesDetails series={detailSeries.backdrop_path} />
+              <CardDetails
+               series={detailSeries.backdrop_path} />
             </div>
           </div>
         </div>

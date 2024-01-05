@@ -23,7 +23,7 @@ export function Navbar() {
                   <i className="bi bi-film"></i>
                   <a href="">Filmes</a>
                 </li>
-                <li onClick={() => navigate("/series/1/popularity")}>
+                <li onClick={() => navigate("/series")}>
                   <i className="bi bi-tv-fill"></i>
                   <a href="">Séries</a>
                 </li>

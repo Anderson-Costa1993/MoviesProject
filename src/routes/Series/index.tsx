@@ -1,34 +1,36 @@
-import { SeriesType } from "../../types";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import style from "./sereies.module.css";
 import { Pagination } from "../../components/Pagination";
-import { useEffect, useState } from "react";
 import { apiMovieService } from "../../services/ServiceApiMovie";
+import { useSearchParams } from "react-router-dom";
+import { LoadingPage } from "../../components/LoadingEl/LoadingPage";
+import { useRequest } from "ahooks";
 
 export function SeriesPage() {
-  const { page, sort_by } = useParams();
-  const [series, setSeries] = useState<SeriesType[]>([]);
 
-  console.log(series)
-
-  useEffect(() => {
-    if (sort_by != undefined)
-      apiMovieService
-        .getSeriesRecents(Number(page), sort_by)
-        .then((Response) => setSeries(Response));
-  },[page]);
-
-
+  const [searchParams] = useSearchParams();
+  const page = searchParams.get("page") || "1";
+  const IMG = `https://image.tmdb.org/t/p/w500/`;
   const navigate = useNavigate();
+
+  const {
+    data: series,
+    loading,
+    error,
+  } = useRequest(() => apiMovieService.getSeriesRecents(Number(page || 1)), {
+    refreshDeps: [page],
+    cacheTime: -1,
+  });
+
   const navigateToPage = (direction: number) => {
-    const currentPageNumber = page ? parseInt(page, 10) : 1;
+    const currentPageNumber = Number(page) || 1;
     const newPageNumber = currentPageNumber + direction;
     if (newPageNumber > 0) {
-      navigate(`/series/${newPageNumber}/popularity`);
+      const newSearchParams = new URLSearchParams(searchParams);
+      newSearchParams.set("page", String(newPageNumber));
+      navigate(`/series?${newSearchParams.toString()}`);
     }
   };
-
-  const IMG = `https://image.tmdb.org/t/p/w500/`;
 
   const scroolTop = () => {
     window.scrollTo({
@@ -42,11 +44,15 @@ export function SeriesPage() {
     scroolTop();
   }
 
+  if (loading) return <LoadingPage />;
+
+  if (error) return <h1>Error</h1>;
+
   return (
     <div className={style["container-series"]}>
       <h1>Series</h1>
       <section className={style["section-cards"]}>
-        {series.map((serie) =>
+        {series?.map((serie) =>
           serie.poster_path ? (
           <div className={style["list-cards"]}>
             <div className={style["container-card"]} onClick={()=> navgateDetail(serie.id)}>
@@ -84,13 +90,11 @@ export function SeriesPage() {
           ) : null
         )}
       </section>
-      {page ? (
         <div className={style.pagination}>
           <Pagination
             navPages={{ navigateToPage: navigateToPage, scroolTop: scroolTop }}
           />
         </div>
-      ) : null}
     </div>
   );
 }

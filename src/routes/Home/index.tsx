@@ -1,20 +1,21 @@
 import style from "./homepage.module.css";
-import { moviesType } from "../../types";
+import { MoviesType } from "../../types";
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { CarouseMovies } from "../../components/CarouselMovie";
+import { Carousel } from "../../components/Carousel/LargeCarousel";
 import { ContextPage } from "../../Context/ContextPage";
 import { apiMovieService } from "../../services/ServiceApiMovie";
 import { useRequest } from "ahooks";
 import { LoadingPage } from "../../components/LoadingEl/LoadingPage";
+import { MdCarousel } from "../../components/Carousel/MdCarousel";
 
 export function HomePage() {
   const URL = "https://image.tmdb.org/t/p/w500/";
   const URL_BANNER = `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/`;
-  const [movies, setMovies] = useState<moviesType[]>([]);
-  const [topMovies, setTopMovies] = useState<moviesType[]>([]);
-  const [soonRelease, setSoonRelease] = useState<moviesType[]>([]);
-  const [currentMovie, setCurrentMovie] = useState<moviesType>(movies[0]);
+  const [movies, setMovies] = useState<MoviesType[]>([]);
+  const [topMovies, setTopMovies] = useState<MoviesType[]>([]);
+  const [soonRelease, setSoonRelease] = useState<MoviesType[]>([]);
+  const [currentMovie, setCurrentMovie] = useState<MoviesType>(movies[0]);
   const [Banner, setBanner] = useState<string | undefined>(
     movies.length > 0 ? `${URL_BANNER + movies[0]?.backdrop_path}` : undefined
   );
@@ -36,7 +37,7 @@ export function HomePage() {
     }
   );
 
-  console.log("series", seriesNetflix)
+  console.log("series", seriesNetflix);
 
   useEffect(() => {
     if (movies.length > 0) {
@@ -176,7 +177,7 @@ export function HomePage() {
                 windowWidth < 600 ? movies.length * 400 : movies.length * 300,
             }}
           >
-            {movies.map((moviesItem: moviesType) => (
+            {movies.map((moviesItem: MoviesType) => (
               <div
                 onClick={() => handleCardClick(moviesItem.id)}
                 className={style.card}
@@ -199,17 +200,17 @@ export function HomePage() {
 
       <section className={style.topMoviesSection}>
         <h1>Top 20 movies</h1>
-        <CarouseMovies movies={topMovies} />
+        <Carousel movies={topMovies} />
       </section>
 
       <section className={style.lancamento}>
         <h1>Breve Lançamento</h1>
-        <CarouseMovies movies={soonRelease} />
+        <MdCarousel movies={soonRelease} />
       </section>
 
       <section className={style.lancamento}>
         <h1>Originais Netflix</h1>
-        <CarouseMovies series={seriesNetflix} />
+        <MdCarousel series={seriesNetflix} />
       </section>
     </>
   );

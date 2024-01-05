@@ -1,4 +1,4 @@
-export type moviesType = {
+export type MoviesType = {
   adult: boolean;
   backdrop_path: string;
   genere_ids: number[];
@@ -15,7 +15,7 @@ export type moviesType = {
   vote_count: number;
 };
 
-export type DetailsMovie = moviesType & {
+export type DetailsMovie = MoviesType & {
   belongs_to_collection: {
     id: number;
     name: string;
@@ -79,12 +79,12 @@ export type ColletionType = {
   id: number;
   name: string;
   overview: string;
-  parts: moviesType[];
+  parts: MoviesType[];
   poster_path: string;
 };
 
 export type seriesBase = Omit<
-  moviesType,
+  MoviesType,
   "video" | "title" | "release_date" | "original_title"
 >;
 

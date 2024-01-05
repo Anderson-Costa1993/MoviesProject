@@ -1,0 +1,134 @@
+.container-DetailFilms {
+  min-height: 100vh;
+}
+.return {
+  top: 110px;
+  margin: 0 15px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+}
+.return i {
+  color: #fff;
+  margin-right: 20px;
+  font-size: 24px;
+}
+
+.return i:hover {
+  transform: scale(1.1);
+}
+
+.container-banner {
+  width: 100%;
+}
+
+.contain-bg {
+  display: flex;
+  align-items: flex-start; /* Ajustei para alinhar à esquerda */
+  margin: -500px auto 0 auto;
+  color: #fff;
+  padding: 0 20px; /* Adicionei um preenchimento para afastar o conteúdo da borda */
+  position: relative;
+  align-items: center;
+  width: 80%;
+}
+.card-details {
+  display: flex;
+  margin-right: 20px;
+  min-width: 210px;
+}
+.container-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.midia-movies {
+  display: block;
+  padding-top: 100px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer {
+  margin-right: 5px;
+}
+
+.contain-video {
+  display: flex;
+}
+
+.sinopse {
+  width: 80%; /* Ajustei a largura para 80% */
+  margin: 5px 0; /* Adicionei uma margem para espaçamento */
+  color: #fff;
+  letter-spacing: 1.5px;
+  background-color: rgba(1, 26, 48, 0);
+  font-size: 14px;
+}
+
+.sinopse p {
+  font-size: 18px;
+}
+
+.iframeVideo {
+  box-sizing: border-box;
+}
+
+@media (max-width: 1500px) {
+  .contain-bg {
+    width: 100%;
+  }
+  .card-details {
+    display: flex;
+    margin-right: 20px;
+  }
+  .container-info h1 {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container-DetailFilms {
+    margin-top: 40px;
+  }
+
+  .container-banner {
+    width: 100%;
+  }
+
+  .contain-bg {
+    width: 100%;
+  }
+
+  .card-details {
+    display: none;
+  }
+  .container-info h1 {
+    font-size: 22px;
+  }
+  .contain-video {
+    display: flex;
+  }
+
+
+  .sinopse {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+
+  .sinopse p {
+    font-size: 16px;
+  }
+
+  .midia-movies {
+    display: block;
+    position: relative;
+    padding-top: 100px;
+  }
+}
