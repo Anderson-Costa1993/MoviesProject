@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GalleryType, moviesType } from "../types";
+import { GalleryType, MoviesType } from "../types";
 import { GenreListType } from "../types";
 import { ColletionType } from "../types";
 import { SeriesType } from "../types";
@@ -16,7 +16,7 @@ export const apiMovieService = {
 
   getMovies: async () => {
     const response = await http.get(API_URL + `movie/popular${KEY}&language=pt-br`)
-    return response.data.results as moviesType[]
+    return response.data.results as MoviesType[]
   },
 
   getGenere: async () => {
@@ -30,7 +30,7 @@ export const apiMovieService = {
       url += `&with_genres=${genres}`;
     }
     const response = await http.get(url);
-  return response.data.results as moviesType[];
+  return response.data.results as MoviesType[];
   },
 
   getDetailsFilmes: async (id: number) => {
@@ -60,12 +60,12 @@ export const apiMovieService = {
 
   getTopFilms: async () => {
     const response = await http.get(`movie/top_rated${KEY}&language=pt-br`)
-    return response.data.results as moviesType[]
+    return response.data.results as MoviesType[]
   },
 
   getSoonRelease: async () => {
     const response = await http.get(`movie/upcoming${KEY}&language=pt-br`)
-    return response.data.results as moviesType[]
+    return response.data.results as MoviesType[]
   },
 
   getAllMovies: async (page: number, genres?: string) => {
@@ -74,7 +74,7 @@ export const apiMovieService = {
       url += `&with_genres=${genres}`;
     }
     const response = await http.get(url);
-  return response.data.results as moviesType[];
+  return response.data.results as MoviesType[];
   },
 
   getSeriesRecents: async (page: number) => {
