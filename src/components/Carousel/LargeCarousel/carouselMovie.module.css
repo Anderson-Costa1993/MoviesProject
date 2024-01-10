@@ -7,7 +7,7 @@
 
 .movieRow-listArea {
   overflow-x: hidden;
-  padding-left: 30px;
+  padding: 0 15px;
 }
 
 .movieRow-list {

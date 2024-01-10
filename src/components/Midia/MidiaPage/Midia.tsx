@@ -13,7 +13,7 @@ interface NavItem {
 }
 
 export function MidiaMovies() {
-  const [activeItem, setActiveItem] = useState<number | null>(1);
+  const [activeItem, setActiveItem] = useState<number | null>(2);
   const [activeModalIndex, setActiveModalIndex] = useState<number | null>(null);
   const [autoplayIndex, setAutoplayIndex] = useState<number | null>(null);
   const [videos, setVideos] = useState<DetailMovieVideosType[]>([]);
@@ -83,6 +83,7 @@ export function MidiaMovies() {
           </li>
         ))}
       </ul>
+
       <div className={style["container-Principal"]}>
         {activeItem == 1 ? (
           <div className={style["container-videos"]}>

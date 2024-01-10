@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GalleryType, MoviesType } from "../types";
+import { GalleryType, MoviesType, SeriesDetailsType } from "../types";
 import { GenreListType } from "../types";
 import { ColletionType } from "../types";
 import { SeriesType } from "../types";
@@ -84,12 +84,24 @@ export const apiMovieService = {
 
   getDetailSeries: async (id: number) => {
     const response = await http.get(`tv/${id + KEY}&language=pt`)
-    return response.data
+    return response.data as SeriesDetailsType
   },
 
   getOriginaisNetflix: async () => {
     const response = await http.get(`discover/tv${KEY}&with_networks=213&language=pt`)
     return response.data.results as SeriesType[]
-  }
+  },
+
+  getImagesSeries: async (id: number) => {
+    const response = await http.get(`tv/${id}/images${KEY}`)
+    return response.data as GalleryType
+  },
+
+  getVideoSeries: async (id: number) => {
+    const response = await http.get(`tv/${id}/videos${KEY}&language=pt-br`)
+    return response.data.results as DetailMovieVideosType[]
+  },
+
+
 
 }

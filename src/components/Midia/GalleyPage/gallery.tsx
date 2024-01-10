@@ -32,8 +32,9 @@ export function Gallery() {
           ))}
         </div>
       ) : null}
-      <div>
+      <div className={style['container-vermais']}>
         <a href={`/filmes/${Number(id)}/gallery`}>Ver mais</a>
+        <i className="bi bi-chevron-compact-right"></i>
       </div>
     </div>
   );

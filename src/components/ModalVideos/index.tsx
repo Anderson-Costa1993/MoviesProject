@@ -12,7 +12,7 @@ export function ModalVideos({ video, modalIndex, closeModal }: Props) {
     <div className={style["container-modal"]}>
       {video.map((item, index) =>
         item.key && video[0].key
-          ? index == 1 && (
+          ? index == 0 && (
               <div className={style.modal}>
                 <button
                   onClick={() => closeModal()}

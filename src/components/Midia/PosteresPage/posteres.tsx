@@ -32,7 +32,7 @@ export function Posteres() {
             ))}
           </div>
         ) : null}
-        <div>
+        <div className={style['container-vermais']}>
           <a href={`/filmes/${Number(id)}/posteres`}>Ver mais</a>
         </div>
       </div>

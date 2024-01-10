@@ -94,7 +94,7 @@ export type SeriesType = seriesBase & {
   original_name: string;
 };
 
-export type seriesDetailsType = SeriesType & {
+export type SeriesDetailsType = SeriesType & {
   adult: Boolean;
   created_by: {
     id: Number;
@@ -103,8 +103,7 @@ export type seriesDetailsType = SeriesType & {
     gender: number;
     profile_path: string;
   }[];
-
-  episodes_rum_time: number[];
+  episodes_rum_time?: number[];
 
   genres: {
     id: number;
@@ -180,6 +179,8 @@ export type seriesDetailsType = SeriesType & {
   tagline?: string;
   type: string;
 };
+
+
 
 export type GalleryType = {
   backdrops: {

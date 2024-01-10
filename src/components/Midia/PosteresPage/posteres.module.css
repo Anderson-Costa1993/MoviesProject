@@ -34,7 +34,7 @@
 .card {
   width: 400px;
   height: 300px;
-  margin-right: 5px;
+  margin-right: 10px;
   scroll-snap-align: start;
   box-sizing: border-box;
   justify-content: center;
@@ -50,5 +50,20 @@ opacity: 9;
 .card img {
   width: 250px;
   height: 300px;
+  border-radius: 0 10px  0 10px;
 }
 
+
+.container-vermais {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+}
+.container-vermais a {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;;
+}

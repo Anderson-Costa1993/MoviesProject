@@ -110,9 +110,11 @@ export function DetailFilmesPage() {
       {filmDetails ? (
         <div className={style["container-DetailFilms"]}>
           <div className={style["container-banner"]}>
-            <BannerHome
-              banner={{ Banner: IMG + `${images?.backdrops[1].file_path}` }}
-            />
+            {images?.backdrops[1] ? (
+              <BannerHome
+                banner={{ Banner: IMG + `${images?.backdrops[1].file_path}` }}
+              />
+            ) : null}
             <div className={style.return}>
               <i
                 className="bi bi-arrow-left"
@@ -137,7 +139,7 @@ export function DetailFilmesPage() {
                 </div>
                 {filmDetailVideos?.map((item, index) =>
                   item.key && filmDetailVideos[0].key
-                    ? index === 1 && (
+                    ? index === 0 && (
                         <div className={style["contain-video"]} key={item.id}>
                           <button
                             type="button"
@@ -180,12 +182,12 @@ export function DetailFilmesPage() {
                     : null
                 )}
                 <div>
-                  {filmDetails.overview ? (
-                    <div className={style.sinopse}>
-                      <p>
+                <p>
                         {" "}
                         <strong>{filmDetails?.tagline}</strong>
                       </p>
+                  {filmDetails.overview ? (
+                    <div className={style.sinopse}>
                       <h1>Sinopse</h1>
                       <p>{filmDetails.overview}</p>
                     </div>

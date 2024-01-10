@@ -47,7 +47,7 @@ export function MdCarousel({ movies, series }: Props) {
 
       let listW = movies.length * 250;
       if (window.innerWidth - listW > x) {
-        x = window.innerWidth - listW - 30;
+        x = window.innerWidth - listW - 20;
       }
       setScrollx(x);
     } else if (movies) {
@@ -67,7 +67,7 @@ export function MdCarousel({ movies, series }: Props) {
 
       let listW = series.length * 250;
       if (window.innerWidth - listW > x) {
-        x = window.innerWidth - listW - 30;
+        x = window.innerWidth - listW - 20;
       }
       setScrollx(x);
     } else if (series) {

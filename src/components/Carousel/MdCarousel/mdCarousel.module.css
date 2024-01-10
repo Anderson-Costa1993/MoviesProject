@@ -1,13 +1,14 @@
 .movieRow {
   margin-top: 300px;
   overflow: hidden;
-  margin: 0 15px 0 15px;
+  margin: 0 10px 0 10px;
   box-sizing: border-box;
 }
 
 .movieRow-listArea {
   overflow-x: hidden;
   padding-left: 30px;
+  padding-right: 30px;
 }
 
 .movieRow-list {
@@ -29,7 +30,7 @@
 }
 
 .movieRow-item img:hover {
-  transform: scale(1);
+  transform: scale(0.9);
   border: solid 2px #eeeeee;
 }
 

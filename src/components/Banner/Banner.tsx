@@ -11,11 +11,11 @@ export function BannerHome({ banner }: Props) {
   const backgroundImageStyle: React.CSSProperties = {
     backgroundImage: `url(${banner.Banner})`,
     backgroundSize: "cover",
-    height: "600px",
+    height: "680px",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     opacity: "0.3",
-    margin: "20px auto",
+    margin: "0  px auto",
   };
 
   const mobileStyle: React.CSSProperties = {
